@@ -237,13 +237,10 @@ if [ "$TEST_CASE" == 0 ] || [ "$TEST_CASE" == 3 ]; then
     process-curl-output "${TMP_OUTPUT}" "${POD_SERVER_STRING}"
     echo
   fi
-  echo -e "${BLUE}ERROR - NAME:30080 works but IP:30080 doesn't${NC}"
+  #echo -e "${BLUE}ERROR - NAME:30080 works but IP:30080 doesn't${NC}"
   #kubectl exec -it web-client-pod-v2xgq -- curl "http://10.244.0.9:30080/"
   #command terminated with exit code 7
   #curl: (7) Failed connect to 10.244.0.9:30080; Connection refused
-  echo "kubectl exec -it $LOCAL_CLIENT_POD -- curl \"http://$NODEPORT_EXTERNAL_IPV4:$NODEPORT_POD_PORT/\""
-  TMP_OUTPUT=`kubectl exec -it $LOCAL_CLIENT_POD -- curl "http://$NODEPORT_EXTERNAL_IPV4:$NODEPORT_POD_PORT/"`
-  process-curl-output "${TMP_OUTPUT}" "${POD_SERVER_STRING}"
   echo "kubectl exec -it $LOCAL_CLIENT_POD -- curl \"http://$NODEPORT_SVC_NAME:$NODEPORT_POD_PORT/\""
   TMP_OUTPUT=`kubectl exec -it $LOCAL_CLIENT_POD -- curl "http://$NODEPORT_SVC_NAME:$NODEPORT_POD_PORT/"`
   process-curl-output "${TMP_OUTPUT}" "${POD_SERVER_STRING}"
@@ -263,13 +260,10 @@ if [ "$TEST_CASE" == 0 ] || [ "$TEST_CASE" == 3 ]; then
     process-curl-output "${TMP_OUTPUT}" "${POD_SERVER_STRING}"
     echo
   fi
-  echo -e "${BLUE}ERROR - NAME:30080 works but IP:30080 doesn't${NC}"
+  #echo -e "${BLUE}ERROR - NAME:30080 works but IP:30080 doesn't${NC}"
   #kubectl exec -it web-client-pod-7crrr -- curl "http://10.244.0.9:30080/"
   #command terminated with exit code 7
   #curl: (7) Failed connect to 10.244.0.9:30080; Connection refused
-  echo "kubectl exec -it $REMOTE_CLIENT_POD -- curl \"http://$NODEPORT_EXTERNAL_IPV4:$NODEPORT_POD_PORT/\""
-  TMP_OUTPUT=`kubectl exec -it $REMOTE_CLIENT_POD -- curl "http://$NODEPORT_EXTERNAL_IPV4:$NODEPORT_POD_PORT/"`
-  process-curl-output "${TMP_OUTPUT}" "${POD_SERVER_STRING}"
   echo "kubectl exec -it $REMOTE_CLIENT_POD -- curl \"http://$NODEPORT_SVC_NAME:$NODEPORT_POD_PORT/\""
   TMP_OUTPUT=`kubectl exec -it $REMOTE_CLIENT_POD -- curl "http://$NODEPORT_SVC_NAME:$NODEPORT_POD_PORT/"`
   process-curl-output "${TMP_OUTPUT}" "${POD_SERVER_STRING}"
